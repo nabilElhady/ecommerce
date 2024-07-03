@@ -1,0 +1,123 @@
+[
+  {
+    "name": "Admin One",
+    "email": "admin1@example.com",
+    "password": "password123",
+    "address": "123 Admin St, Admin City, AD 12345",
+    "isAdmin": true,
+    "purchases": [
+      {
+        "product": "60d0fe4f5311236168a109ca",
+        "quantity": 2,
+        "price": 29.99,
+        "purchaseDate": "2024-01-10T12:00:00Z"
+      },
+      {
+        "product": "60d0fe4f5311236168a109cb",
+        "quantity": 1,
+        "price": 49.99,
+        "purchaseDate": "2024-02-15T12:00:00Z"
+      }
+    ]
+  },
+  {
+    "name": "Admin Two",
+    "email": "admin2@example.com",
+    "password": "password123",
+    "address": "456 Admin St, Admin City, AD 12345",
+    "isAdmin": true,
+    "purchases": []
+  },
+  {
+    "name": "Admin Three",
+    "email": "admin3@example.com",
+    "password": "password123",
+    "address": "789 Admin St, Admin City, AD 12345",
+    "isAdmin": true,
+    "purchases": [
+      {
+        "product": "60d0fe4f5311236168a109cc",
+        "quantity": 3,
+        "price": 19.99,
+        "purchaseDate": "2024-03-20T12:00:00Z"
+      }
+    ]
+  },
+  {
+    "name": "User One",
+    "email": "user1@example.com",
+    "password": "password123",
+    "address": "123 User St, User City, US 12345",
+    "isAdmin": false,
+    "purchases": [
+      {
+        "product": "60d0fe4f5311236168a109cd",
+        "quantity": 1,
+        "price": 99.99,
+        "purchaseDate": "2024-04-25T12:00:00Z"
+      }
+    ]
+  },
+  {
+    "name": "User Two",
+    "email": "user2@example.com",
+    "password": "password123",
+    "address": "456 User St, User City, US 12345",
+    "isAdmin": false,
+    "purchases": []
+  },
+  {
+    "name": "User Three",
+    "email": "user3@example.com",
+    "password": "password123",
+    "address": "789 User St, User City, US 12345",
+    "isAdmin": false,
+    "purchases": [
+      {
+        "product": "60d0fe4f5311236168a109ce",
+        "quantity": 5,
+        "price": 9.99,
+        "purchaseDate": "2024-05-30T12:00:00Z"
+      }
+    ]
+  },
+  {
+    "name": "User Four",
+    "email": "user4@example.com",
+    "password": "password123",
+    "address": "101 User St, User City, US 12345",
+    "isAdmin": false,
+    "purchases": []
+  },
+  {
+    "name": "User Five",
+    "email": "user5@example.com",
+    "password": "password123",
+    "address": "202 User St, User City, US 12345",
+    "isAdmin": false,
+    "purchases": [
+      {
+        "product": "60d0fe4f5311236168a109cf",
+        "quantity": 2,
+        "price": 59.99,
+        "purchaseDate": "2024-06-10T12:00:00Z"
+      }
+    ]
+  },
+  {
+    "name": "User Six",
+    "email": "user6@example.com",
+    "password": "password123",
+    "address": "303 User St, User City, US 12345",
+    "isAdmin": false,
+    "purchases": []
+  },
+  {
+    "name": "User Seven",
+    "email": "user7@example.com",
+    "password": "password123",
+    "address": "404 User St, User City, US 12345",
+    "isAdmin": false,
+    "purchases": []
+  }
+]

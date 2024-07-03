@@ -1,0 +1,269 @@
+[
+  {
+    "name": "Sony WH-1000XM4",
+    "description": "Experience the next level of silence with the Sony WH-1000XM4 wireless noise-canceling headphones.",
+    "price": 349.99,
+    "category": "60d5f1a708c6000015a68be1",
+    "stock": 50,
+    "images": [
+      "sonywh1000xm41.jpg",
+      "sonywh1000xm42.jpg",
+      "sonywh1000xm43.jpg",
+      "sonywh1000xm44.jpg"
+    ],
+    "coverImage": "sonywh1000xm4-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bef"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Bose QuietComfort 35 II",
+    "description": "Bose QuietComfort 35 II noise-canceling headphones for high-quality sound and comfort.",
+    "price": 299.99,
+    "category": "60d5f1a708c6000015a68be1",
+    "stock": 30,
+    "images": [
+      "boseqc35ii1.jpg",
+      "boseqc35ii2.jpg",
+      "boseqc35ii3.jpg",
+      "boseqc35ii4.jpg"
+    ],
+    "coverImage": "boseqc35ii-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bf0"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Apple MacBook Pro 16\"",
+    "description": "The new MacBook Pro 16\" with M1 chip delivers incredible performance and battery life.",
+    "price": 2399.99,
+    "category": "60d5f1a708c6000015a68be2",
+    "stock": 20,
+    "images": [
+      "macbookpro161.jpg",
+      "macbookpro162.jpg",
+      "macbookpro163.jpg",
+      "macbookpro164.jpg"
+    ],
+    "coverImage": "macbookpro16-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bf1"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Dell XPS 13",
+    "description": "Dell XPS 13 is a powerful and compact laptop with an InfinityEdge display.",
+    "price": 1299.99,
+    "category": "60d5f1a708c6000015a68be2",
+    "stock": 25,
+    "images": [
+      "dellxps131.jpg",
+      "dellxps132.jpg",
+      "dellxps133.jpg",
+      "dellxps134.jpg"
+    ],
+    "coverImage": "dellxps13-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bf2"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Samsung Galaxy S21",
+    "description": "Samsung Galaxy S21 with cutting-edge technology and a sleek design.",
+    "price": 799.99,
+    "category": "60d5f1a708c6000015a68be3",
+    "stock": 40,
+    "images": [
+      "galaxys211.jpg",
+      "galaxys212.jpg",
+      "galaxys213.jpg",
+      "galaxys214.jpg"
+    ],
+    "coverImage": "galaxys21-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bf3"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "iPhone 13 Pro",
+    "description": "iPhone 13 Pro with advanced camera system and A15 Bionic chip.",
+    "price": 999.99,
+    "category": "60d5f1a708c6000015a68be3",
+    "stock": 35,
+    "images": [
+      "iphone13pro1.jpg",
+      "iphone13pro2.jpg",
+      "iphone13pro3.jpg",
+      "iphone13pro4.jpg"
+    ],
+    "coverImage": "iphone13pro-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bf4"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "iPad Pro 11\"",
+    "description": "The new iPad Pro 11\" with M1 chip for unmatched performance.",
+    "price": 799.99,
+    "category": "60d5f1a708c6000015a68be4",
+    "stock": 50,
+    "images": [
+      "ipadpro111.jpg",
+      "ipadpro112.jpg",
+      "ipadpro113.jpg",
+      "ipadpro114.jpg"
+    ],
+    "coverImage": "ipadpro11-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bf5"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Samsung Galaxy Tab S7",
+    "description": "Samsung Galaxy Tab S7 with a large display and powerful processor.",
+    "price": 649.99,
+    "category": "60d5f1a708c6000015a68be4",
+    "stock": 45,
+    "images": [
+      "galaxytabs71.jpg",
+      "galaxytabs72.jpg",
+      "galaxytabs73.jpg",
+      "galaxytabs74.jpg"
+    ],
+    "coverImage": "galaxytabs7-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bf6"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Apple Watch Series 7",
+    "description": "Apple Watch Series 7 with advanced health monitoring features.",
+    "price": 399.99,
+    "category": "60d5f1a708c6000015a68be5",
+    "stock": 60,
+    "images": [
+      "applewatchseries71.jpg",
+      "applewatchseries72.jpg",
+      "applewatchseries73.jpg",
+      "applewatchseries74.jpg"
+    ],
+    "coverImage": "applewatchseries7-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bf7"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Samsung Galaxy Watch 4",
+    "description": "Samsung Galaxy Watch 4 with advanced fitness tracking.",
+    "price": 249.99,
+    "category": "60d5f1a708c6000015a68be5",
+    "stock": 55,
+    "images": [
+      "galaxywatch41.jpg",
+      "galaxywatch42.jpg",
+      "galaxywatch43.jpg",
+      "galaxywatch44.jpg"
+    ],
+    "coverImage": "galaxywatch4-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bf8"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "HP Spectre x360",
+    "description": "HP Spectre x360 is a versatile and powerful convertible laptop.",
+    "price": 1399.99,
+    "category": "60d5f1a708c6000015a68be2",
+    "stock": 20,
+    "images": [
+      "hpspectrex3601.jpg",
+      "hpspectrex3602.jpg",
+      "hpspectrex3603.jpg",
+      "hpspectrex3604.jpg"
+    ],
+    "coverImage": "hpspectrex360-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bf9"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Asus ROG Zephyrus G14",
+    "description": "Asus ROG Zephyrus G14 is a powerful gaming laptop with a sleek design.",
+    "price": 1599.99,
+    "category": "60d5f1a708c6000015a68be2",
+    "stock": 25,
+    "images": [
+      "asusrogzephyrusg141.jpg",
+      "asusrogzephyrusg142.jpg",
+      "asusrogzephyrusg143.jpg",
+      "asusrogzephyrusg144.jpg"
+    ],
+    "coverImage": "asusrogzephyrusg14-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bfa"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Google Pixel 6",
+    "description": "Google Pixel 6 with advanced AI features and a sleek design.",
+    "price": 699.99,
+    "category": "60d5f1a708c6000015a68be3",
+    "stock": 30,
+    "images": ["pixel61.jpg", "pixel62.jpg", "pixel63.jpg", "pixel64.jpg"],
+    "coverImage": "pixel6-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bfb"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "OnePlus 9 Pro",
+    "description": "OnePlus 9 Pro with a fluid AMOLED display and fast charging.",
+    "price": 899.99,
+    "category": "60d5f1a708c6000015a68be3",
+    "stock": 35,
+    "images": [
+      "oneplus9pro1.jpg",
+      "oneplus9pro2.jpg",
+      "oneplus9pro3.jpg",
+      "oneplus9pro4.jpg"
+    ],
+    "coverImage": "oneplus9pro-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bfc"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Lenovo ThinkPad X1 Carbon",
+    "description": "Lenovo ThinkPad X1 Carbon is a durable and powerful business laptop.",
+    "price": 1799.99,
+    "category": "60d5f1a708c6000015a68be2",
+    "stock": 15,
+    "images": [
+      "thinkpadx1carbon1.jpg",
+      "thinkpadx1carbon2.jpg",
+      "thinkpadx1carbon3.jpg",
+      "thinkpadx1carbon4.jpg"
+    ],
+    "coverImage": "thinkpadx1carbon-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bfd"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  },
+  {
+    "name": "Microsoft Surface Pro 7",
+    "description": "Microsoft Surface Pro 7 with a versatile design and powerful performance.",
+    "price": 999.99,
+    "category": "60d5f1a708c6000015a68be4",
+    "stock": 40,
+    "images": [
+      "surfacepro71.jpg",
+      "surfacepro72.jpg",
+      "surfacepro73.jpg",
+      "surfacepro74.jpg"
+    ],
+    "coverImage": "surfacepro7-cover.jpg",
+    "reviews": ["60d5f1a708c6000015a68bfe"],
+    "created_at": "2024-06-12T10:00:00.000Z",
+    "updated_at": "2024-06-12T10:00:00.000Z"
+  }
+]

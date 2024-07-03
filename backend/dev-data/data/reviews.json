@@ -1,0 +1,114 @@
+[
+  {
+    "_id": "60d5f1a708c6000015a68bef",
+    "product": "60d5f1a708c6000015a68bef",
+    "user": "60d5f1a708c6000015a68bf0",
+    "rating": 5,
+    "comment": "Amazing sound quality and noise cancellation!"
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bf0",
+    "product": "60d5f1a708c6000015a68bf0",
+    "user": "60d5f1a708c6000015a68bf1",
+    "rating": 4,
+    "comment": "Very comfortable and great sound quality."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bf1",
+    "product": "60d5f1a708c6000015a68bf1",
+    "user": "60d5f1a708c6000015a68bf2",
+    "rating": 5,
+    "comment": "The best laptop I've ever owned. Highly recommend!"
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bf2",
+    "product": "60d5f1a708c6000015a68bf2",
+    "user": "60d5f1a708c6000015a68bf3",
+    "rating": 4,
+    "comment": "Great performance and beautiful design."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bf3",
+    "product": "60d5f1a708c6000015a68bf3",
+    "user": "60d5f1a708c6000015a68bf4",
+    "rating": 5,
+    "comment": "The best smartphone on the market right now."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bf4",
+    "product": "60d5f1a708c6000015a68bf4",
+    "user": "60d5f1a708c6000015a68bf5",
+    "rating": 4,
+    "comment": "Great phone but a bit pricey."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bf5",
+    "product": "60d5f1a708c6000015a68bf5",
+    "user": "60d5f1a708c6000015a68bf6",
+    "rating": 5,
+    "comment": "Perfect tablet for work and play."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bf6",
+    "product": "60d5f1a708c6000015a68bf6",
+    "user": "60d5f1a708c6000015a68bf7",
+    "rating": 4,
+    "comment": "Great tablet but the battery life could be better."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bf7",
+    "product": "60d5f1a708c6000015a68bf7",
+    "user": "60d5f1a708c6000015a68bf8",
+    "rating": 5,
+    "comment": "Amazing smartwatch with lots of features."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bf8",
+    "product": "60d5f1a708c6000015a68bf8",
+    "user": "60d5f1a708c6000015a68bf9",
+    "rating": 4,
+    "comment": "Great smartwatch but a bit expensive."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bf9",
+    "product": "60d5f1a708c6000015a68bf9",
+    "user": "60d5f1a708c6000015a68bfa",
+    "rating": 5,
+    "comment": "Excellent laptop for both work and gaming."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bfa",
+    "product": "60d5f1a708c6000015a68bfa",
+    "user": "60d5f1a708c6000015a68bfb",
+    "rating": 4,
+    "comment": "Great laptop but a bit heavy."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bfb",
+    "product": "60d5f1a708c6000015a68bfb",
+    "user": "60d5f1a708c6000015a68bfc",
+    "rating": 5,
+    "comment": "Best phone I've ever used. Highly recommend."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bfc",
+    "product": "60d5f1a708c6000015a68bfc",
+    "user": "60d5f1a708c6000015a68bfd",
+    "rating": 4,
+    "comment": "Great phone but the battery life could be better."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bfd",
+    "product": "60d5f1a708c6000015a68bfd",
+    "user": "60d5f1a708c6000015a68bfe",
+    "rating": 5,
+    "comment": "Amazing laptop for business use."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68bfe",
+    "product": "60d5f1a708c6000015a68bfe",
+    "user": "60d5f1a708c6000015a68bef",
+    "rating": 4,
+    "comment": "Great laptop but the price is a bit high."
+  }
+]

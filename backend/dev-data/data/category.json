@@ -1,0 +1,27 @@
+[
+  {
+    "_id": "60d5f1a708c6000015a68be1",
+    "name": "Headphones",
+    "description": "Top quality headphones for immersive sound."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68be2",
+    "name": "Laptops",
+    "description": "High-performance laptops for all your needs."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68be3",
+    "name": "Smartphones",
+    "description": "Latest smartphones with advanced features."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68be4",
+    "name": "Tablets",
+    "description": "Portable and powerful tablets for on-the-go use."
+  },
+  {
+    "_id": "60d5f1a708c6000015a68be5",
+    "name": "Smartwatches",
+    "description": "Smartwatches with various functionalities and styles."
+  }
+]
