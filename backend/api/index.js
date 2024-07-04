@@ -13,7 +13,11 @@ require("dotenv").config({ path: "./config.env" });
 const mongoose = require("mongoose");
 
 const DB = process.env.DataBaseURL;
-app.use(cors());
+const corsOptions = {
+  origin: "https://ecommerce-frontend-pi-fawn.vercel.app", // Replace with your frontend URL
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 app.use(express.json()); // Middleware to parse JSON requests
 const imagesPath = path.join(__dirname, "../dev-data/images");
 console.log("Serving static files from:", imagesPath);
