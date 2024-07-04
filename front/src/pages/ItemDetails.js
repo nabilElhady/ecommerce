@@ -131,7 +131,7 @@ const ItemDetails = () => {
         <div className="flex flex-col lg:flex-row lg:space-x-8">
           <div className="w-full lg:w-2/5 flex flex-col">
             <img
-              src={`http://localhost:8000/dev-data/images/products/${bigPicture}`}
+              src={`http://localhost:8000/images/products/${bigPicture}`}
               alt={`Item ${id}`}
               className="w-full h-auto object-cover rounded-lg mb-4 lg:mb-0 transition-transform duration-300 ease-in-out transform scale-100"
             />
@@ -156,7 +156,7 @@ const ItemDetails = () => {
               {smallPictures.map((pic, index) => (
                 <img
                   key={index}
-                  src={`http://localhost:8000/dev-data/images/products/${pic}`}
+                  src={`http://localhost:8000/images/products/${pic}`}
                   alt={`Item ${id} - ${index + 1}`}
                   className="w-full h-32 object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
                   onClick={() => swapPictures(index)}

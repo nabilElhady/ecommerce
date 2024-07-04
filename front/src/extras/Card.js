@@ -102,8 +102,8 @@ const ItemCard = ({
     <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl">
       <Link to={`/item/${id}`} className="block">
         <img
-          src={`http://localhost:8000/dev-data/images/products/${image}`}
-          alt="Item"
+          src={`http://localhost:8000/images/products/${image}`}
+          alt="Product Image"
           className="w-full h-48 object-cover"
         />
       </Link>

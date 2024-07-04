@@ -199,7 +199,7 @@ const ProceedToBuy = () => {
                 }}
               >
                 <img
-                  src={`http://localhost:8000/dev-data/images/products/${item.image}`}
+                  src={`http://localhost:8000/images/products/${item.image}`}
                   alt={item.title}
                   className="w-16 h-16 object-cover rounded-lg"
                 />
