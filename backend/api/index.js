@@ -30,7 +30,12 @@ app.use("/api/v1/orders", orderRoutes);
 app.use("/api/v1/payments", paymentRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/carts", cartRoutes);
-
+app.get("/api", (req, res) => {
+  res.send({ message: "Hello from the backend!" });
+});
+app.get("/", (req, res) => {
+  res.send({ message: "Hello from the backend!1" });
+});
 console.log(DB);
 mongoose.connect(DB, {}).then((con) => {
   console.log("connection to db is done");
