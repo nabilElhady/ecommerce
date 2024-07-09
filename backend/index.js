@@ -31,10 +31,10 @@ app.use("/api/v1/payments", paymentRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/carts", cartRoutes);
 app.get("/api", (req, res) => {
-  res.send({ message: "Hello from the backend!" });
+  res.send({ message: "Hello from the backend!", db: DB });
 });
 app.get("/", (req, res) => {
-  res.send({ message: "Hello from the backend!1" });
+  res.send({ message: "Hello from the backend!1", DB: DB });
 });
 console.log(DB);
 mongoose.connect(DB, {}).then((con) => {
