@@ -1,12 +1,12 @@
 const express = require("express"); // Express framework for handling HTTP requests
 const app = express(); // Create an Express application
-const productRoutes = require("../routes/productRoutes");
-const userRoutes = require("../routes/userRoutes");
-const reviewRoutes = require("../routes/reviewRoutes");
-const cartRoutes = require("../routes/cartRoutes");
-const paymentRoutes = require("../routes/paymentRoutes");
-const orderRoutes = require("../routes/orderRoutes");
-const categoryRoutes = require("../routes/categoryRoutes");
+const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
+const cartRoutes = require("./routes/cartRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 const cors = require("cors");
 const path = require("path");
 require("dotenv").config({ path: "./config.env" });
