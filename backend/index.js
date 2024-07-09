@@ -17,7 +17,7 @@ const corsOptions = {
   origin: "https://ecommerce-frontend-pi-fawn.vercel.app", // Replace with your frontend URL
   optionsSuccessStatus: 200,
 };
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json()); // Middleware to parse JSON requests
 const imagesPath = path.join(__dirname, "./dev-data/images");
 console.log("Serving static files from:", imagesPath);
