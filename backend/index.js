@@ -19,7 +19,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json()); // Middleware to parse JSON requests
-const imagesPath = path.join(__dirname, "../dev-data/images");
+const imagesPath = path.join(__dirname, "./dev-data/images");
 console.log("Serving static files from:", imagesPath);
 
 app.use("/images", express.static(imagesPath));
