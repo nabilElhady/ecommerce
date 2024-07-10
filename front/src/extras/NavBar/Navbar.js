@@ -13,7 +13,10 @@ import SearchBar from "./SearchBar";
 import Cart from "./Cart";
 import MobileMenu from "./MobileMenu";
 import logo from "../images/logo-no-background.png";
+require("dotenv").config({ path: "./config.env" });
+
 const Navbar = () => {
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const navigate = useNavigate();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -55,9 +58,9 @@ const Navbar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/api/v1/categories`
-        );
+        console.log(API_BASE_URL);
+        const response = await axios.get(`${API_BASE_URL}/categories`);
+
         setCategories(response.data || []);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -83,8 +86,6 @@ const Navbar = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-  const API_BASE_URL =
-    process.env.REACT_APP_API_BASE_URL || "http://localhost:8000/api/v1";
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) {
