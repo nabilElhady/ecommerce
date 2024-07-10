@@ -118,6 +118,7 @@ const Navbar = () => {
   const handleCategory = async (categoryId) => {
     try {
       setLoading(true);
+      console.log(API_BASE_URL);
       const response = await axios.get(`${API_BASE_URL}/categories`);
 
       dispatch(filteredList(response.data));
