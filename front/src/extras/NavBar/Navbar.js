@@ -204,7 +204,9 @@ const Navbar = () => {
     const fetchAllProducts = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`${API_BASE_URL}/products`);
+        const response = await axios.get(
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/products`
+        );
 
         dispatch(filteredList(response.data));
         setLoading(false);
