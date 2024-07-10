@@ -83,6 +83,8 @@ const Navbar = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || "http://localhost:8000/api/v1";
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) {
@@ -116,9 +118,8 @@ const Navbar = () => {
   const handleCategory = async (categoryId) => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        `http://localhost:8000/api/v1/products/category/${categoryId}`
-      );
+      const response = await axios.get(`${API_BASE_URL}/categories`);
+
       dispatch(filteredList(response.data));
       setLoading(false);
       return response.data;
