@@ -204,9 +204,8 @@ const Navbar = () => {
     const fetchAllProducts = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          `http://localhost:8000/api/v1/products`
-        );
+        const response = await axios.get(`${API_BASE_URL}/products`);
+
         dispatch(filteredList(response.data));
         setLoading(false);
       } catch (error) {
