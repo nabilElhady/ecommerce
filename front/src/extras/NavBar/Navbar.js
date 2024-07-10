@@ -13,10 +13,7 @@ import SearchBar from "./SearchBar";
 import Cart from "./Cart";
 import MobileMenu from "./MobileMenu";
 import logo from "../images/logo-no-background.png";
-require("dotenv").config({ path: "./config.env" });
-
 const Navbar = () => {
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const navigate = useNavigate();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -58,9 +55,9 @@ const Navbar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(API_BASE_URL);
-        const response = await axios.get(`${API_BASE_URL}/categories`);
-
+        const response = await axios.get(
+          `http://localhost:8000/api/v1/categories`
+        );
         setCategories(response.data || []);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -119,9 +116,9 @@ const Navbar = () => {
   const handleCategory = async (categoryId) => {
     try {
       setLoading(true);
-      console.log(API_BASE_URL);
-      const response = await axios.get(`${API_BASE_URL}/categories`);
-
+      const response = await axios.get(
+        `http://localhost:8000/api/v1/products/category/${categoryId}`
+      );
       dispatch(filteredList(response.data));
       setLoading(false);
       return response.data;
@@ -205,9 +202,8 @@ const Navbar = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://ecommerce-backend-wine-one.vercel.app/api/v1/products`
+          `http://localhost:8000/api/v1/products`
         );
-
         dispatch(filteredList(response.data));
         setLoading(false);
       } catch (error) {
