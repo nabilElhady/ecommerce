@@ -117,7 +117,7 @@ const Navbar = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:8000/api/v1/products/category/${categoryId}`
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}`
       );
       dispatch(filteredList(response.data));
       setLoading(false);
@@ -132,7 +132,7 @@ const Navbar = () => {
   const handleIncreaseItem = async (id) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}/increase`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/increase`,
         { productId: id }
       );
       console.log(response.data);
@@ -145,7 +145,7 @@ const Navbar = () => {
   const handleDecreaseItem = async (id) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}/decrease`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/decrease`,
         { productId: id }
       );
       setItems(response.data.products);
@@ -157,7 +157,7 @@ const Navbar = () => {
   const handleRemoveItem = async (id) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}/remove`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/remove`,
         { productId: id }
       );
       setItems(response.data.products);
@@ -183,7 +183,7 @@ const Navbar = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/products/search?query=${searchQuery}`
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/search?query=${searchQuery}`
       );
       setSearchResults(response.data || []);
     } catch (error) {
@@ -202,7 +202,7 @@ const Navbar = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/products`
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/products`
         );
         dispatch(filteredList(response.data));
         setLoading(false);

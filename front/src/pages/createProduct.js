@@ -22,7 +22,7 @@ const CreateProductPage = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/v1/categories"
+        "https://ecommerce-backend-wine-one.vercel.app/api/v1/categories"
       );
       setCategories(response.data);
     } catch (error) {
@@ -87,7 +87,7 @@ const CreateProductPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/products",
+        "https://ecommerce-backend-wine-one.vercel.app/api/v1/products",
         productData,
         {
           headers: {

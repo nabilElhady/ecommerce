@@ -21,7 +21,7 @@ const ItemDetails = () => {
     const fetchItemDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/products/${id}`
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/${id}`
         );
         const itemData = response.data;
         setItem(itemData);
@@ -62,7 +62,7 @@ const ItemDetails = () => {
 
       try {
         const { data: cart } = await axios.get(
-          `http://localhost:8000/api/v1/carts/${cookies.user._id}`
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
         );
 
         const productPayload = {
@@ -80,7 +80,7 @@ const ItemDetails = () => {
 
         if (cart) {
           await axios.patch(
-            `http://localhost:8000/api/v1/carts/${cookies.user._id}`,
+            `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`,
             updatePayload
           );
         }
@@ -100,7 +100,10 @@ const ItemDetails = () => {
                 },
               ],
             };
-            await axios.post(`http://localhost:8000/api/v1/carts`, payload);
+            await axios.post(
+              `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts`,
+              payload
+            );
           } catch (postError) {
             console.error("Error creating cart:", postError);
           }
@@ -131,7 +134,7 @@ const ItemDetails = () => {
         <div className="flex flex-col lg:flex-row lg:space-x-8">
           <div className="w-full lg:w-2/5 flex flex-col">
             <img
-              src={`http://localhost:8000/images/products/${bigPicture}`}
+              src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${bigPicture}`}
               alt={`Item ${id}`}
               className="w-full h-auto object-cover rounded-lg mb-4 lg:mb-0 transition-transform duration-300 ease-in-out transform scale-100"
             />
@@ -156,7 +159,7 @@ const ItemDetails = () => {
               {smallPictures.map((pic, index) => (
                 <img
                   key={index}
-                  src={`http://localhost:8000/images/products/${pic}`}
+                  src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${pic}`}
                   alt={`Item ${id} - ${index + 1}`}
                   className="w-full h-32 object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
                   onClick={() => swapPictures(index)}

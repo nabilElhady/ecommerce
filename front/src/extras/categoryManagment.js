@@ -8,7 +8,7 @@ const CategoryManagement = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       const response = await axios.get(
-        "http://localhost:8000/api/v1/categories"
+        "https://ecommerce-backend-wine-one.vercel.app/api/v1/categories"
       );
       setCategories(response.data);
     };
@@ -17,14 +17,16 @@ const CategoryManagement = () => {
 
   const handleAddCategory = async () => {
     const response = await axios.post(
-      "http://localhost:8000/api/v1/categories",
+      "https://ecommerce-backend-wine-one.vercel.app/api/v1/categories",
       newCategory
     );
     setCategories([...categories, response.data]);
   };
 
   const handleDeleteCategory = async (id) => {
-    await axios.delete(`http://localhost:8000/api/v1/categories/${id}`);
+    await axios.delete(
+      `https://ecommerce-backend-wine-one.vercel.app/api/v1/categories/${id}`
+    );
     setCategories(categories.filter((category) => category._id !== id));
   };
 

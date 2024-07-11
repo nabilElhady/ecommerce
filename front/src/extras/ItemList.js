@@ -17,7 +17,7 @@ const ItemList = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/products`,
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/products`,
           {
             params: {
               page,

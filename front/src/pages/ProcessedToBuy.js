@@ -23,7 +23,7 @@ const ProceedToBuy = () => {
       };
 
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`,
         updatePayload
       );
       setCartItems(response.data.products);
@@ -38,7 +38,7 @@ const ProceedToBuy = () => {
   const handleDecreaseItem = async (id) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}/decrease`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/decrease`,
         { productId: id } // Correctly pass the product ID
       );
       setCartItems(response.data.products);
@@ -53,7 +53,7 @@ const ProceedToBuy = () => {
   const handleRemoveItem = async (id) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}/remove`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/remove`,
         { productId: id }
       );
       setCartItems(response.data.products);
@@ -67,10 +67,13 @@ const ProceedToBuy = () => {
   const handleCheckOut = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/api/v1/orders", {
-        userId: cookies.user._id,
-        productsId: cartItems.map((item) => item.product._id).filter(Boolean), // Ensure valid product IDs
-      });
+      const response = await axios.post(
+        "https://ecommerce-backend-wine-one.vercel.app/api/v1/orders",
+        {
+          userId: cookies.user._id,
+          productsId: cartItems.map((item) => item.product._id).filter(Boolean), // Ensure valid product IDs
+        }
+      );
 
       if (response.data.url) {
         window.location.href = response.data.url;
@@ -90,7 +93,7 @@ const ProceedToBuy = () => {
       if (cookies.user) {
         try {
           const response = await axios.get(
-            `http://localhost:8000/api/v1/carts/${cookies.user._id}`
+            `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
           );
           const products = response.data.products || [];
           setCartItems(products); // Ensure 'price' is included in each product object
@@ -199,7 +202,7 @@ const ProceedToBuy = () => {
                 }}
               >
                 <img
-                  src={`http://localhost:8000/images/products/${item.image}`}
+                  src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${item.image}`}
                   alt={item.title}
                   className="w-16 h-16 object-cover rounded-lg"
                 />

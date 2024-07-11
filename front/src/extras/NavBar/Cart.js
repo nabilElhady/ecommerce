@@ -44,7 +44,7 @@ const Cart = ({
     setLoading(true); // Start loading spinner
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}`
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
       );
       setItems(response.data.products); // Set fetched items to state
     } catch (error) {

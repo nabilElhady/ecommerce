@@ -33,14 +33,14 @@ const SignUpPage = () => {
         }
 
         response = await axios.post(
-          "http://localhost:8000/api/v1/users/signup",
+          "https://ecommerce-backend-wine-one.vercel.app/api/v1/users/signup",
           formData
         );
         setState(!state);
         toast.success("Signup successful! Please log in.");
       } else {
         response = await axios.post(
-          "http://localhost:8000/api/v1/users/login",
+          "https://ecommerce-backend-wine-one.vercel.app/api/v1/users/login",
           formData
         );
         toast.success("Logged in successfully! Welcome.");

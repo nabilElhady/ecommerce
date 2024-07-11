@@ -21,7 +21,7 @@ const ItemCard = ({
     if (cookies.user) {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/carts/${cookies.user._id}`
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
         );
         const productsIds = response.data.products;
         dispatch(fullItems(productsIds));
@@ -38,7 +38,7 @@ const ItemCard = ({
 
     try {
       const { data: cart } = await axios.get(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}`
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
       );
 
       const updatePayload = {
@@ -56,7 +56,7 @@ const ItemCard = ({
 
       if (cart) {
         await axios.patch(
-          `http://localhost:8000/api/v1/carts/${cookies.user._id}`,
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`,
           updatePayload
         );
       }
@@ -78,7 +78,10 @@ const ItemCard = ({
               },
             ],
           };
-          await axios.post(`http://localhost:8000/api/v1/carts`, payload);
+          await axios.post(
+            `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts`,
+            payload
+          );
           onAddToCart();
         } catch (postError) {
           console.error(
@@ -102,7 +105,7 @@ const ItemCard = ({
     <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl">
       <Link to={`/item/${id}`} className="block">
         <img
-          src={`http://localhost:8000/images/products/${image}`}
+          src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${image}`}
           alt="Product Image"
           className="w-full h-48 object-cover"
         />

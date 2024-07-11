@@ -12,7 +12,9 @@ const UserManagement = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/v1/users");
+        const response = await axios.get(
+          "https://ecommerce-backend-wine-one.vercel.app/api/v1/users"
+        );
         setUsers(response.data);
         setLoading(false);
       } catch (error) {
@@ -26,7 +28,9 @@ const UserManagement = () => {
 
   const handleDeleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/v1/users/${id}`);
+      await axios.delete(
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/users/${id}`
+      );
       setUsers(users.filter((user) => user._id !== id));
       toast.success("User deleted successfully!");
     } catch (error) {
@@ -46,7 +50,7 @@ const UserManagement = () => {
 
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/users/${id}`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/users/${id}`,
         { isAdmin: roleChanges[id] }
       );
       setUsers(users.map((user) => (user._id === id ? response.data : user)));

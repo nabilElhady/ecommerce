@@ -17,7 +17,7 @@ const CartPage = () => {
     if (!cookies.user) return;
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}`
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
       );
       setItems(response.data.products);
     } catch (error) {
@@ -28,7 +28,7 @@ const CartPage = () => {
   const handleIncreaseItem = async (id) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}/increase`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/increase`,
         { productId: id }
       );
       setItems(response.data.products);
@@ -40,7 +40,7 @@ const CartPage = () => {
   const handleDecreaseItem = async (id) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}/decrease`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/decrease`,
         { productId: id }
       );
       setItems(response.data.products);
@@ -52,7 +52,7 @@ const CartPage = () => {
   const handleRemoveItem = async (id) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/carts/${cookies.user._id}/remove`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/remove`,
         { productId: id }
       );
       setItems(response.data.products);

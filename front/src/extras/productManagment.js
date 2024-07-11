@@ -12,7 +12,7 @@ const ProductManagement = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/products?page=${currentPage}&limit=${pageSize}`
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/products?page=${currentPage}&limit=${pageSize}`
         );
         setProducts(response.data.products);
         setTotalPages(response.data.pages);
@@ -25,7 +25,9 @@ const ProductManagement = () => {
 
   const handleDeleteProduct = async (productId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/v1/products/${productId}`);
+      await axios.delete(
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/${productId}`
+      );
       setProducts(products.filter((product) => product._id !== productId));
     } catch (error) {
       console.error("Error deleting product:", error);
@@ -60,7 +62,7 @@ const ProductManagement = () => {
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="flex items-center space-x-4">
                 <img
-                  src={`http://localhost:8000/images/products/${product.coverImage}`}
+                  src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${product.coverImage}`}
                   alt={product.name}
                   className="w-16 h-16 object-cover rounded"
                 />
