@@ -36,7 +36,7 @@ const Navbar = () => {
       if (cookies.user) {
         try {
           const response = await axios.get(
-            `http://localhost:8000/api/v1/carts/${cookies.user._id}`
+            `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
           );
           const productsIds = response.data.products;
           setItems(productsIds);
