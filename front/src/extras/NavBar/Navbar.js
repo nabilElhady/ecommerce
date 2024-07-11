@@ -56,7 +56,7 @@ const Navbar = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/categories`
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/categories`
         );
         setCategories(response.data || []);
       } catch (error) {
