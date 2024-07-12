@@ -13,7 +13,9 @@
     },
     {
       "src": "/images/products/(.*)",
-      "dest": "/dev-data/images/products/$1"
-    }
+      "dest": "/images/products/$1"
+    },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/" }
   ]
 }
