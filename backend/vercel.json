@@ -12,8 +12,8 @@
       "dest": "/index.js"
     },
     {
-      "src": "/images/products/(.*)",
-      "dest": "/images/products/$1"
+      "src": "/dev-data/images/products/(.*)",
+      "dest": "/dev-data/images/products/$1"
     }
   ]
 }
