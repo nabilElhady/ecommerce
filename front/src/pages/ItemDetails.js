@@ -134,7 +134,7 @@ const ItemDetails = () => {
         <div className="flex flex-col lg:flex-row lg:space-x-8">
           <div className="w-full lg:w-2/5 flex flex-col">
             <img
-              src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${bigPicture}`}
+              src={`/${bigPicture}`}
               alt={`Item ${id}`}
               className="w-full h-auto object-cover rounded-lg mb-4 lg:mb-0 transition-transform duration-300 ease-in-out transform scale-100"
             />

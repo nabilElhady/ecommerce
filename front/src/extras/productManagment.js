@@ -62,7 +62,7 @@ const ProductManagement = () => {
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="flex items-center space-x-4">
                 <img
-                  src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${product.coverImage}`}
+                  src={`${product.coverImage}`}
                   alt={product.name}
                   className="w-16 h-16 object-cover rounded"
                 />

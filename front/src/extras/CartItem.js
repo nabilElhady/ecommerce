@@ -8,7 +8,7 @@ const CartItem = ({
   return (
     <div className="flex justify-between items-center bg-gray-800 p-4 rounded-lg space-x-4">
       <img
-        src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${item.product.coverImage}`}
+        src={`${item.product.coverImage}`}
         alt={item.product.name}
         className="w-16 h-16 object-cover rounded-lg"
       />

@@ -202,7 +202,7 @@ const ProceedToBuy = () => {
                 }}
               >
                 <img
-                  src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${item.image}`}
+                  src={`${item.image}`}
                   alt={item.title}
                   className="w-16 h-16 object-cover rounded-lg"
                 />

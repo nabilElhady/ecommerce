@@ -41,7 +41,7 @@ const SearchBar = ({
               onClick={() => handleResultClick(result._id)}
             >
               <img
-                src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${result.coverImage}`}
+                src={`${result.coverImage}`}
                 alt={result.name}
                 className="w-12 h-12 object-cover mr-2"
               />
