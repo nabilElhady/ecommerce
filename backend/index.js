@@ -61,7 +61,7 @@ const mongoose = require("mongoose");
 require("dotenv").config({ path: "./config.env" });
 
 // Routes
-// const productRoutes = require("./routes/productRoutes");
+const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const cartRoutes = require("./routes/cartRoutes");
@@ -90,7 +90,7 @@ console.log("Serving static files from:", imagesPath);
 app.use("/images/products", express.static(imagesPath));
 
 // Routes Middleware
-// app.use("/api/v1/products", productRoutes);
+app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/reviews", reviewRoutes);
 app.use("/api/v1/orders", orderRoutes);
