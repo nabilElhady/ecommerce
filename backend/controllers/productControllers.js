@@ -2,31 +2,25 @@ const Product = require("../model/productModel");
 const cloudinary = require("cloudinary").v2;
 
 // Create a new product
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 exports.createProduct = async (req, res) => {
   try {
     const { title, description, price, category } = req.body;
 
     // Handle file uploads
-    let coverImage;
-    const images = [];
+    const coverImage = req.files["coverImage"]
+      ? req.files["coverImage"][0]
+      : null;
+    const images = req.files["images"] ? req.files["images"] : [];
 
-    if (req.files && req.files.coverImage) {
-      const result = await cloudinary.uploader.upload(
-        req.files.coverImage.tempFilePath
-      );
-      coverImage = result.secure_url;
-    }
-
-    if (req.files && req.files.images) {
-      const imageFiles = Array.isArray(req.files.images)
-        ? req.files.images
-        : [req.files.images];
-      for (const file of imageFiles) {
-        const result = await cloudinary.uploader.upload(file.tempFilePath);
-        images.push(result.secure_url);
-      }
-    }
-
+    // Check if exactly 4 images are provided
     if (images.length !== 4) {
       return res.status(400).json({
         success: false,
@@ -34,7 +28,8 @@ exports.createProduct = async (req, res) => {
       });
     }
 
-    const existingProduct = await Product.findOne({ title });
+    // Check if a product with the same title already exists
+    const existingProduct = await Product.findOne({ name: title });
     if (existingProduct) {
       return res.status(400).json({
         success: false,
@@ -42,15 +37,28 @@ exports.createProduct = async (req, res) => {
       });
     }
 
+    // Upload images to Cloudinary
+    const uploadImage = async (file) => {
+      const result = await cloudinary.uploader.upload(file.path);
+      return result.secure_url;
+    };
+
+    const coverImageUrl = coverImage ? await uploadImage(coverImage) : null;
+    const imageUrls = await Promise.all(
+      images.map((file) => uploadImage(file))
+    );
+
+    // Create a new product instance
     const newProduct = new Product({
-      title,
+      name: title,
       description,
       price,
-      coverImage,
-      images,
+      coverImage: coverImageUrl,
+      images: imageUrls,
       category,
     });
 
+    // Save the new product to the database
     const product = await newProduct.save();
     res.status(201).json({
       success: true,
