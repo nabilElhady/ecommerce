@@ -1,8 +1,6 @@
 const Product = require("../model/productModel");
 const cloudinary = require("cloudinary").v2;
 
-// Create a new product
-
 // Configure Cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -10,6 +8,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// Create a new product
 exports.createProduct = async (req, res) => {
   try {
     const { title, description, price, category } = req.body;
