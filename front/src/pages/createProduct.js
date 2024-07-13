@@ -90,7 +90,7 @@ const CreateProductPage = () => {
 
       const response = await axios.post(
         "https://ecommerce-backend-wine-one.vercel.app/api/v1/products",
-        productData,
+        formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
