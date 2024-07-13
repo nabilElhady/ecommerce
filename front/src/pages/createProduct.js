@@ -86,7 +86,8 @@ const CreateProductPage = () => {
     });
 
     try {
-      console.log(formData);
+      console.log("productData", productData, formData);
+
       const response = await axios.post(
         "https://ecommerce-backend-wine-one.vercel.app/api/v1/products",
         productData,
