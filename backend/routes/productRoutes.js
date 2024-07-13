@@ -3,7 +3,6 @@ const router = express.Router();
 const productControllers = require("../controllers/productControllers");
 const multer = require("multer");
 const path = require("path");
-const verifyAdmin = require("./verfyAdmin");
 
 // Initialize image counter
 let imageCounter = 0;
@@ -45,12 +44,15 @@ router.post(
 
 // Other routes for getting, updating, and deleting products
 router.route("/").get(productControllers.getAllProducts);
+
 router.get("/search", productControllers.findItem);
+
 router
   .route("/:id")
   .get(productControllers.getProductById)
   .delete(productControllers.deleteProduct)
   .patch(productControllers.updateProduct);
+
 router.get("/category/:categoryId", productControllers.getProductsByCategory);
 
 module.exports = router;

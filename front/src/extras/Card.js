@@ -105,7 +105,7 @@ const ItemCard = ({
     <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl">
       <Link to={`/item/${id}`} className="block">
         <img
-          src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${image}`}
+          src={`${image}`}
           alt="Product Image"
           className="w-full h-48 object-cover"
         />
