@@ -78,19 +78,21 @@ const CreateProductPage = () => {
     productData.append("description", formData.description);
     productData.append("price", formData.price);
     productData.append("category", formData.category);
+
     if (formData.coverImage) {
       productData.append("coverImage", formData.coverImage);
     }
+
     formData.images.forEach((image) => {
       productData.append("images", image);
     });
 
     try {
-      console.log("productData", productData, formData);
+      console.log("productData", productData);
 
       const response = await axios.post(
         "https://ecommerce-backend-wine-one.vercel.app/api/v1/products",
-        formData,
+        productData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
