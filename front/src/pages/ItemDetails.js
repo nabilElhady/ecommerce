@@ -132,15 +132,17 @@ const ItemDetails = () => {
         </button>
         <div className="flex flex-col lg:flex-row lg:space-x-8">
           <div className="w-full lg:w-2/5 flex flex-col items-center">
-            <img
-              src={bigPicture}
-              alt={`Item ${id}`}
-              className="w-full max-h-screen-md object-contain rounded-lg mb-4 lg:mb-0 transition-transform duration-300 ease-in-out transform scale-100"
-            />
-            <div className="flex justify-center text-center h-full align-middle items-center">
+            <div className="w-full max-w-[80%] max-h-[15rem] overflow-hidden mb-4 lg:mb-0 rounded-lg">
+              <img
+                src={bigPicture}
+                alt={`Item ${id}`}
+                className="w-full h-full object-contain transition-transform duration-300 ease-in-out transform scale-100"
+              />
+            </div>
+            <div className="flex justify-center text-center align-middle items-center w-full">
               <button
                 onClick={handleAddToCart}
-                className="w-1/2 bg-yellow-500 h-12 text-white px-4 py-2 rounded font-bold transition-transform transform hover:scale-105 active:scale-95 mt-4 lg:mt-0"
+                className="w-full lg:w-[80%] bg-yellow-500 h-12 text-white px-4 py-2 rounded font-bold transition-transform transform hover:scale-105 active:scale-95 mt-auto lg:mt-4"
               >
                 Add to Cart
               </button>
@@ -160,7 +162,7 @@ const ItemDetails = () => {
                   key={index}
                   src={pic}
                   alt={`Item ${id} - ${index + 1}`}
-                  className="w-full h-32 object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
+                  className="w-full h-32 object-contain rounded-lg transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
                   onClick={() => swapPictures(index)}
                 />
               ))}
