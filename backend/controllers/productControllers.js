@@ -12,7 +12,7 @@ cloudinary.config({
 exports.createProduct = async (req, res) => {
   try {
     const { title, description, price, category } = req.body;
-
+    console.log("here", req.body);
     // Handle file uploads
     const coverImage = req.files["coverImage"]
       ? req.files["coverImage"][0]
