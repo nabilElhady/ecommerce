@@ -7,12 +7,9 @@ import { useCookies } from "react-cookie";
 
 const ItemDetails = () => {
   const [cookies] = useCookies(["user"]);
-
   const dispatch = useDispatch();
-
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [item, setItem] = useState(null);
   const [bigPicture, setBigPicture] = useState("");
   const [smallPictures, setSmallPictures] = useState([]);
@@ -27,7 +24,9 @@ const ItemDetails = () => {
         setItem(itemData);
         setBigPicture(itemData.coverImage);
         setSmallPictures(itemData.images);
-      } catch (error) {}
+      } catch (error) {
+        console.error("Error fetching item details:", error);
+      }
     };
 
     fetchItemDetails();
@@ -55,7 +54,7 @@ const ItemDetails = () => {
 
   const handleAddToCart = async () => {
     if (item) {
-      const { _id, title, price, coverImage, description } = item; // Ensure item has all required fields
+      const { _id, title, price, coverImage, description } = item;
       if (!cookies.user) {
         return alert("Please sign in");
       }
@@ -112,7 +111,7 @@ const ItemDetails = () => {
         }
       }
     } else {
-      console.log("no item");
+      console.log("No item found");
     }
   };
 
@@ -132,11 +131,11 @@ const ItemDetails = () => {
           &times;
         </button>
         <div className="flex flex-col lg:flex-row lg:space-x-8">
-          <div className="w-full lg:w-2/5 flex flex-col">
+          <div className="w-full lg:w-2/5 flex flex-col items-center">
             <img
-              src={`${bigPicture}`}
+              src={bigPicture}
               alt={`Item ${id}`}
-              className=" max-w-5xl h-auto object-cover rounded-lg mb-4 lg:mb-0 transition-transform duration-300 ease-in-out transform scale-100"
+              className="w-full max-h-screen-md object-contain rounded-lg mb-4 lg:mb-0 transition-transform duration-300 ease-in-out transform scale-100"
             />
             <div className="flex justify-center text-center h-full align-middle items-center">
               <button
@@ -159,7 +158,7 @@ const ItemDetails = () => {
               {smallPictures.map((pic, index) => (
                 <img
                   key={index}
-                  src={`${pic}`}
+                  src={pic}
                   alt={`Item ${id} - ${index + 1}`}
                   className="w-full h-32 object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
                   onClick={() => swapPictures(index)}
