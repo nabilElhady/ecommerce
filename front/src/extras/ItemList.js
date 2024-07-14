@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingSpinner from "./LoadingSpinner";
 
 const ItemList = () => {
   const [products, setProducts] = useState([]);
@@ -15,6 +16,7 @@ const ItemList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           `https://ecommerce-backend-wine-one.vercel.app/api/v1/products`,
@@ -33,7 +35,7 @@ const ItemList = () => {
         setPages(response.data.pages);
         setLoading(false);
       } catch (error) {
-        setError(error.message);
+        setError("Network error. Please refresh or try again later.");
         setLoading(false);
       }
     };
@@ -48,44 +50,49 @@ const ItemList = () => {
     setPage((prevPage) => Math.min(prevPage + 1, pages));
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="container mx-auto p-8">
       <ToastContainer />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {products.map((item) => {
-          return (
-            <ItemCard
-              key={item._id}
-              id={item._id}
-              image={item.coverImage}
-              title={item.name}
-              description={item.description}
-              price={item.price}
-              onAddToCart={() => toast.success("Item added successfully")}
-              onError={(msg) => toast.error(msg)}
-            />
-          );
-        })}
-      </div>
-      <div className="flex justify-between mt-4">
-        <button
-          onClick={handlePrevious}
-          disabled={page === 1}
-          className="bg-blue-500 text-white py-2 px-4 rounded disabled:bg-gray-300"
-        >
-          Previous
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={page === pages}
-          className="bg-blue-500 text-white py-2 px-4 rounded disabled:bg-gray-300"
-        >
-          Next
-        </button>
-      </div>
+      {error ? (
+        <div className="text-red-500 text-center">{error}</div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {products.map((item) => {
+              return (
+                <ItemCard
+                  key={item._id}
+                  id={item._id}
+                  image={item.coverImage}
+                  title={item.name}
+                  description={item.description}
+                  price={item.price}
+                  onAddToCart={() => toast.success("Item added successfully")}
+                  onError={(msg) => toast.error(msg)}
+                />
+              );
+            })}
+          </div>
+          <div className="flex justify-between mt-4">
+            <button
+              onClick={handlePrevious}
+              disabled={page === 1}
+              className="bg-blue-500 text-white py-2 px-4 rounded disabled:bg-gray-300"
+            >
+              Previous
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={page === pages}
+              className="bg-blue-500 text-white py-2 px-4 rounded disabled:bg-gray-300"
+            >
+              Next
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

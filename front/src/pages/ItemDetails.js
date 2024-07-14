@@ -159,7 +159,7 @@ const ItemDetails = () => {
               {smallPictures.map((pic, index) => (
                 <img
                   key={index}
-                  src={`https://ecommerce-backend-wine-one.vercel.app/images/products/${pic}`}
+                  src={`${pic}`}
                   alt={`Item ${id} - ${index + 1}`}
                   className="w-full h-32 object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
                   onClick={() => swapPictures(index)}
