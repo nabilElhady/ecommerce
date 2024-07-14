@@ -136,7 +136,7 @@ const ItemDetails = () => {
             <img
               src={`${bigPicture}`}
               alt={`Item ${id}`}
-              className="w-full h-auto object-cover rounded-lg mb-4 lg:mb-0 transition-transform duration-300 ease-in-out transform scale-100"
+              className=" max-w-5xl h-auto object-cover rounded-lg mb-4 lg:mb-0 transition-transform duration-300 ease-in-out transform scale-100"
             />
             <div className="flex justify-center text-center h-full align-middle items-center">
               <button
