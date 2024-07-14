@@ -81,9 +81,14 @@ const CreateProductPage = () => {
     if (formData.coverImage) {
       productData.append("coverImage", formData.coverImage);
     }
-    formData.images.forEach((image) => {
-      productData.append("images", image);
+    formData.images.forEach((image, index) => {
+      productData.append(`images[${index}]`, image);
     });
+
+    // Log FormData entries for debugging
+    for (let pair of productData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
 
     try {
       const response = await axios.post(
