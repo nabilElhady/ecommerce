@@ -37,7 +37,19 @@ exports.createProduct = async (req, res) => {
 
     // Upload images to Cloudinary
     const uploadImage = async (file) => {
-      const result = await cloudinary.uploader.upload(file.path);
+      const result = await cloudinary.uploader
+        .upload_stream(
+          {
+            folder: "products",
+          },
+          (error, result) => {
+            if (error) {
+              throw new Error(error.message);
+            }
+            return result.secure_url;
+          }
+        )
+        .end(file.buffer);
       return result.secure_url;
     };
 
