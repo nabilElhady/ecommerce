@@ -1,5 +1,6 @@
 const Product = require("../model/productModel");
 const cloudinary = require("cloudinary").v2;
+const { Readable } = require("stream");
 
 // Configure Cloudinary
 cloudinary.config({
@@ -7,6 +8,30 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
+// Helper function to convert buffer to stream
+const bufferToStream = (buffer) => {
+  const readable = new Readable();
+  readable._read = () => {}; // _read is required but you can noop it
+  readable.push(buffer);
+  readable.push(null);
+  return readable;
+};
+
+// Upload image to Cloudinary
+const uploadImage = async (file) => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream((error, result) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(result.secure_url);
+      }
+    });
+
+    bufferToStream(file.buffer).pipe(stream);
+  });
+};
 
 exports.createProduct = async (req, res) => {
   try {
@@ -36,23 +61,6 @@ exports.createProduct = async (req, res) => {
     }
 
     // Upload images to Cloudinary
-    const uploadImage = async (file) => {
-      const result = await cloudinary.uploader
-        .upload_stream(
-          {
-            folder: "products",
-          },
-          (error, result) => {
-            if (error) {
-              throw new Error(error.message);
-            }
-            return result.secure_url;
-          }
-        )
-        .end(file.buffer);
-      return result.secure_url;
-    };
-
     const coverImageUrl = coverImage ? await uploadImage(coverImage) : null;
     const imageUrls = await Promise.all(
       images.map((file) => uploadImage(file))
