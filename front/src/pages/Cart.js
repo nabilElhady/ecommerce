@@ -74,7 +74,7 @@ const CartPage = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold text-white">Your Cart</h1>
+        <h1 className="text-3xl font-bold text-black">Your Cart</h1>
         <button
           onClick={() => navigate("/")}
           className="font-bold text-black outline-none focus:outline-none ml-4 bg-gray-200 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded"
