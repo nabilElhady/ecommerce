@@ -77,7 +77,7 @@ const CartPage = () => {
         <h1 className="text-3xl font-bold text-white">Your Cart</h1>
         <button
           onClick={() => navigate("/")}
-          className="font-bold text-black outline-none focus:outline-none ml-4 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded"
+          className="font-bold text-black outline-none focus:outline-none ml-4 bg-gray-200 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded"
         >
           Back to Home
         </button>

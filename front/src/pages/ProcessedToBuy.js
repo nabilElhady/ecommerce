@@ -128,7 +128,7 @@ const ProceedToBuy = () => {
         <h1 className="text-3xl font-bold text-black">Proceed to Buy</h1>
         <button
           onClick={() => navigate("/cart")}
-          className="font-bold text-black outline-none focus:outline-none ml-4 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded"
+          className="font-bold text-black outline-none focus:outline-none ml-4 hover:text-yellow-400 bg-gray-300 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded"
         >
           Back to Cart
         </button>
@@ -217,7 +217,7 @@ const ProceedToBuy = () => {
                   className="w-16 h-16 object-cover rounded-lg"
                 />
                 <div className="flex-grow">
-                  <h3 className="text-lg font-bold">{item.title}</h3>
+                  <h3 className="text-lg font-bold text-black">{item.title}</h3>
                   <p className="text-gray-700">
                     ${(item.product.price || 0).toFixed(2)}
                   </p>
@@ -241,7 +241,7 @@ const ProceedToBuy = () => {
                 </div>
               </div>
             ))}
-            <div className="text-lg font-bold text-right text*black">
+            <div className="text-lg font-bold text-right text-black">
               Total: ${(totalPrice || 0).toFixed(2)}
             </div>
           </div>
