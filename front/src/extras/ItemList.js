@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from "./LoadingSpinner";
+import SkeletonCard from "./SkeltonCard";
 
 const ItemList = () => {
   const [products, setProducts] = useState([]);
@@ -50,17 +51,17 @@ const ItemList = () => {
     setPage((prevPage) => Math.min(prevPage + 1, pages));
   };
 
-  if (loading) return <LoadingSpinner />;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="container mx-auto p-8">
       <ToastContainer />
-      {error ? (
-        <div className="text-red-500 text-center">{error}</div>
-      ) : (
-        <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {products.map((item) => {
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {loading
+          ? Array.from({ length: 3 }).map((_, index) => (
+              <SkeletonCard key={index} />
+            ))
+          : products.map((item) => {
               return (
                 <ItemCard
                   key={item._id}
@@ -74,25 +75,23 @@ const ItemList = () => {
                 />
               );
             })}
-          </div>
-          <div className="flex justify-between mt-4">
-            <button
-              onClick={handlePrevious}
-              disabled={page === 1}
-              className="bg-blue-500 text-white py-2 px-4 rounded disabled:bg-gray-300"
-            >
-              Previous
-            </button>
-            <button
-              onClick={handleNext}
-              disabled={page === pages}
-              className="bg-blue-500 text-white py-2 px-4 rounded disabled:bg-gray-300"
-            >
-              Next
-            </button>
-          </div>
-        </>
-      )}
+      </div>
+      <div className="flex justify-between mt-4">
+        <button
+          onClick={handlePrevious}
+          disabled={page === 1 || loading}
+          className="bg-blue-500 text-white py-2 px-4 rounded disabled:bg-gray-300"
+        >
+          Previous
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={page === pages || loading}
+          className="bg-blue-500 text-white py-2 px-4 rounded disabled:bg-gray-300"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
