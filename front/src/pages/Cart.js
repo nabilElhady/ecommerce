@@ -73,11 +73,11 @@ const CartPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 flex-wrap">
         <h1 className="text-3xl font-bold text-black">Your Cart</h1>
         <button
           onClick={() => navigate("/")}
-          className="font-bold text-black outline-none focus:outline-none ml-4 bg-gray-200 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded"
+          className="font-bold text-black outline-none focus:outline-none ml-4 bg-gray-200 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded mt-2 lg:mt-0"
         >
           Back to Home
         </button>
@@ -102,8 +102,8 @@ const CartPage = () => {
                 }
               />
             ))}
-            <div className="flex justify-between items-center mt-6">
-              <h2 className="text-2xl text-white">
+            <div className="flex justify-between items-center mt-6 flex-wrap">
+              <h2 className="text-2xl text-white mb-2 lg:mb-0">
                 Total: ${calculateTotal()}
               </h2>
               <button
