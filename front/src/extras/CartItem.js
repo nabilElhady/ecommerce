@@ -9,7 +9,7 @@ const CartItem = ({
   return (
     <div className="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4 bg-gray-800 p-4 rounded-lg mb-4">
       <img
-        src={item.product.image}
+        src={`${item.product.coverImage}`}
         alt={item.product.title}
         className="w-24 h-24 object-cover rounded-lg"
       />
