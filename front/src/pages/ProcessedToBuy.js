@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import InputMask from "react-input-mask"; // Import InputMask
+import InputMask from "react-input-mask";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const ProceedToBuy = () => {
   const dispatch = useDispatch();
   const [cartItems, setCartItems] = useState([]);
   const [cookies] = useCookies(["user"]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // State to store error messages
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleIncreaseItem = async (id) => {
     try {
       const updatePayload = {
         products: [
           {
-            product: id, // Correctly pass the product ID
-            quantity: 1, // Increase quantity by 1
+            product: id,
+            quantity: 1,
           },
         ],
       };
@@ -39,7 +41,7 @@ const ProceedToBuy = () => {
     try {
       const response = await axios.patch(
         `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/decrease`,
-        { productId: id } // Correctly pass the product ID
+        { productId: id }
       );
       setCartItems(response.data.products);
     } catch (error) {
@@ -64,6 +66,7 @@ const ProceedToBuy = () => {
       );
     }
   };
+
   const handleCheckOut = async (e) => {
     e.preventDefault();
     try {
@@ -71,7 +74,7 @@ const ProceedToBuy = () => {
         "https://ecommerce-backend-wine-one.vercel.app/api/v1/orders",
         {
           userId: cookies.user._id,
-          productsId: cartItems.map((item) => item.product._id).filter(Boolean), // Ensure valid product IDs
+          productsId: cartItems.map((item) => item.product._id).filter(Boolean),
         }
       );
 
@@ -86,8 +89,6 @@ const ProceedToBuy = () => {
     }
   };
 
-  // Add this to your button's onClick event
-
   useEffect(() => {
     const fetchCartItems = async () => {
       if (cookies.user) {
@@ -96,7 +97,7 @@ const ProceedToBuy = () => {
             `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
           );
           const products = response.data.products || [];
-          setCartItems(products); // Ensure 'price' is included in each product object
+          setCartItems(products);
           setLoading(false);
         } catch (err) {
           console.log(err);
@@ -108,23 +109,30 @@ const ProceedToBuy = () => {
     fetchCartItems();
   }, [cookies.user, cartItems]);
 
-  // Calculate total price, handling potential undefined values
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + (item.product.price || 0) * item.quantity,
     0
   );
 
   if (loading) {
-    return <div>Loading...</div>; // Display a loading indicator while fetching data
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>; // Display an error message if fetching data fails
+    return <div>Error: {error}</div>;
   }
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-8">Proceed to Buy</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold">Proceed to Buy</h1>
+        <button
+          onClick={() => navigate("/cart")}
+          className="font-bold text-white outline-none focus:outline-none ml-4 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded"
+        >
+          Back to Cart
+        </button>
+      </div>
       <div className="flex flex-col lg:flex-row lg:space-x-8">
         <div className="w-full lg:w-2/3">
           <form className="bg-white p-6 rounded-lg shadow-lg space-y-4">
@@ -210,8 +218,7 @@ const ProceedToBuy = () => {
                   <h3 className="text-lg font-bold">{item.title}</h3>
                   <p className="text-gray-700">
                     ${(item.product.price || 0).toFixed(2)}
-                  </p>{" "}
-                  {/* Handle undefined item.price */}
+                  </p>
                   <div className="flex items-center mt-2">
                     <button
                       className="bg-gray-200 text-black px-2 py-1 rounded-l"
@@ -233,8 +240,7 @@ const ProceedToBuy = () => {
               </div>
             ))}
             <div className="text-lg font-bold text-right">
-              Total: ${(totalPrice || 0).toFixed(2)}{" "}
-              {/* Handle undefined totalPrice */}
+              Total: ${(totalPrice || 0).toFixed(2)}
             </div>
           </div>
         </div>
