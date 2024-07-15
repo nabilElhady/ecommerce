@@ -125,10 +125,10 @@ const ProceedToBuy = () => {
   return (
     <div className="container mx-auto p-8">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">Proceed to Buy</h1>
+        <h1 className="text-3xl font-bold text-black">Proceed to Buy</h1>
         <button
           onClick={() => navigate("/cart")}
-          className="font-bold text-white outline-none focus:outline-none ml-4 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded"
+          className="font-bold text-black outline-none focus:outline-none ml-4 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded"
         >
           Back to Cart
         </button>
@@ -136,7 +136,9 @@ const ProceedToBuy = () => {
       <div className="flex flex-col lg:flex-row lg:space-x-8">
         <div className="w-full lg:w-2/3">
           <form className="bg-white p-6 rounded-lg shadow-lg space-y-4">
-            <h2 className="text-2xl font-bold mb-4">Billing Information</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">
+              Billing Information
+            </h2>
             <div>
               <label className="block text-black">Name</label>
               <input
@@ -199,7 +201,7 @@ const ProceedToBuy = () => {
           </form>
         </div>
         <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
-          <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
+          <h2 className="text-2xl font-bold mb-4 text-black">Your Cart</h2>
           <div className="bg-white p-6 rounded-lg shadow-lg space-y-4">
             {cartItems.map((item) => (
               <div
@@ -226,7 +228,7 @@ const ProceedToBuy = () => {
                     >
                       -
                     </button>
-                    <span className="px-4 py-1 border-t border-b">
+                    <span className="px-4 py-1 border-t border-b text-black">
                       {item.quantity}
                     </span>
                     <button
@@ -239,7 +241,7 @@ const ProceedToBuy = () => {
                 </div>
               </div>
             ))}
-            <div className="text-lg font-bold text-right">
+            <div className="text-lg font-bold text-right text*black">
               Total: ${(totalPrice || 0).toFixed(2)}
             </div>
           </div>

@@ -49,7 +49,9 @@ const ProductManagement = () => {
   return (
     <div className="bg-white shadow-md rounded p-6">
       <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold">Product Management</h2>
+        <h2 className="text-2xl font-semibold text-black">
+          Product Management
+        </h2>
         <Link to="/create-product">
           <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Add Product

@@ -78,13 +78,15 @@ const UserManagement = () => {
   return (
     <div className="bg-white shadow-md rounded p-6">
       <ToastContainer />
-      <h2 className="text-2xl font-semibold mb-4">User Management</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-black">
+        User Management
+      </h2>
       <div className="space-y-4">
         {users.map((user) => (
           <div key={user._id} className="p-4 bg-gray-50 rounded shadow">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="flex flex-col items-center md:items-start">
-                <div className="font-semibold">{user.name}</div>
+                <div className="font-semibold text-black">{user.name}</div>
                 <div className="text-gray-600">{user.email}</div>
               </div>
               <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
