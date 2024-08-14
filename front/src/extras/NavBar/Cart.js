@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import LoadingSpinner from "../LoadingSpinner";
 import CartItem from "../CartItem";
-import { useCookies } from "react-cookie";
 
 // Cart component definition
 const Cart = ({
@@ -12,11 +10,10 @@ const Cart = ({
   handleIncreaseItem, // Prop to handle increasing the quantity of an item
   handleDecreaseItem, // Prop to handle decreasing the quantity of an item
   handleRemoveItem, // Prop to handle removing an item from the cart
+  items, // Prop to pass preloaded cart items
+  loading, // Prop to pass loading state
 }) => {
   const cartRef = useRef(null); // Ref to the cart element for detecting outside clicks
-  const [items, setItems] = useState([]); // State to store cart items
-  const [loading, setLoading] = useState(false); // State to manage loading spinner
-  const [cookies] = useCookies(["user"]); // Hook to manage cookies
 
   // Handle click outside the cart to close it
   const handleClickOutside = (event) => {
@@ -29,7 +26,6 @@ const Cart = ({
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      fetchCartItems();
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
@@ -37,32 +33,6 @@ const Cart = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
-
-  // Function to fetch cart items from the server
-  const fetchCartItems = async () => {
-    if (!cookies.user) return; // If no user is logged in, do nothing
-    setLoading(true); // Start loading spinner
-    try {
-      const response = await axios.get(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
-      );
-      setItems(response.data.products); // Set fetched items to state
-    } catch (error) {
-      console.error("Error fetching cart items:", error);
-    } finally {
-      setLoading(false); // Stop loading spinner
-    }
-  };
-
-  // Effect to fetch cart items on component mount
-  useEffect(() => {
-    fetchCartItems();
-  }, []);
-
-  // Function to update cart items in state
-  const handleUpdateItems = (newItems) => {
-    setItems(newItems);
-  };
 
   return (
     isOpen && ( // Render the cart only if it's open
@@ -85,13 +55,13 @@ const Cart = ({
                   key={item.product._id}
                   item={item}
                   handleIncreaseItem={(id) =>
-                    handleIncreaseItem(id).then(() => fetchCartItems())
+                    handleIncreaseItem(id).then(() => toggleCart())
                   }
                   handleDecreaseItem={(id) =>
-                    handleDecreaseItem(id).then(() => fetchCartItems())
+                    handleDecreaseItem(id).then(() => toggleCart())
                   }
                   handleRemoveItem={(id) =>
-                    handleRemoveItem(id).then(() => fetchCartItems())
+                    handleRemoveItem(id).then(() => toggleCart())
                   }
                 />
               ))
