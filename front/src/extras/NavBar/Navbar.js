@@ -13,8 +13,10 @@ import SearchBar from "./SearchBar";
 import Cart from "./Cart";
 import MobileMenu from "./MobileMenu";
 import logo from "../images/logo-no-background.png";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
+
 const Navbar = () => {
-  const navigate = useNavigate();
+  const [showNotification, setShowNotification] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,6 +32,7 @@ const Navbar = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const searchRef = useRef(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -53,7 +56,7 @@ const Navbar = () => {
   }, [cartCount, cookies.user]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCategories = async () => {
       try {
         const response = await axios.get(
           `https://ecommerce-backend-wine-one.vercel.app/api/v1/categories`
@@ -63,7 +66,7 @@ const Navbar = () => {
         console.error("Error fetching categories:", error);
       }
     };
-    fetchData();
+    fetchCategories();
   }, [cookies.user]);
 
   useEffect(() => {
@@ -120,8 +123,11 @@ const Navbar = () => {
         `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}`
       );
       dispatch(filteredList(response.data));
+      setShowNotification(true);
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 1000); // Show the notification for 1 second
       setLoading(false);
-      return response.data;
     } catch (error) {
       console.error("Error fetching products by category:", error);
       setLoading(false);
@@ -135,7 +141,6 @@ const Navbar = () => {
         `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/increase`,
         { productId: id }
       );
-      console.log(response.data);
       setItems(response.data.products);
     } catch (error) {
       console.error("Error increasing item quantity:", error);
@@ -212,7 +217,7 @@ const Navbar = () => {
       }
     };
     fetchAllProducts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <nav className="bg-gradient-to-r from-gray-900 via-gray-900 to-gray-200 py-4 relative z-30">
@@ -227,7 +232,7 @@ const Navbar = () => {
               className="hover:text-gray-400 transition-colors duration-200"
             />
           </button>
-          <img className="w-12 h-12" src={logo}></img>
+          <img className="w-12 h-12" src={logo} alt="Logo" />
         </div>
 
         <CategoriesMenu
@@ -248,6 +253,13 @@ const Navbar = () => {
           searchResults={searchResults}
           handleResultClick={handleResultClick}
         />
+
+        {showNotification && (
+          <div className="fixed top-0 left-1/2 transform -translate-x-1/2 mt-4 z-50 bg-green-500 text-white py-2 px-4 rounded-lg flex items-center shadow-lg transition-opacity duration-300">
+            <CheckCircleIcon className="w-6 h-6 mr-2" />
+            <span>done!</span>
+          </div>
+        )}
 
         <div className="flex items-center">
           <button
@@ -289,7 +301,7 @@ const Navbar = () => {
           </button>
         ) : (
           <Link to={"/signup"}>
-            <button className=" font-bold text-white  outline-text focus:outline-none ml-4 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200  py-1 px-3 rounded">
+            <button className="font-bold text-white focus:outline-none ml-4 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded">
               Sign Up
             </button>
           </Link>
