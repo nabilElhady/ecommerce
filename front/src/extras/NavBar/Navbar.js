@@ -14,8 +14,6 @@ import Cart from "./Cart";
 import MobileMenu from "./MobileMenu";
 import logo from "../images/logo-no-background.png";
 const Navbar = () => {
-  const [showNotification, setShowNotification] = useState(false);
-
   const navigate = useNavigate();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -38,7 +36,7 @@ const Navbar = () => {
       if (cookies.user) {
         try {
           const response = await axios.get(
-            `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
+            `            https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
           );
           const productsIds = response.data.products;
           setItems(productsIds);
@@ -58,7 +56,8 @@ const Navbar = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://ecommerce-backend-wine-one.vercel.app/api/v1/categories`
+          `          https://ecommerce-backend-wine-one.vercel.app/api/v1/categories
+`
         );
         setCategories(response.data || []);
       } catch (error) {
@@ -116,17 +115,13 @@ const Navbar = () => {
   };
 
   const handleCategory = async (categoryId) => {
-    setLoading(true);
     try {
+      setLoading(true);
       const response = await axios.get(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}`
+        `        https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}
+`
       );
-      setShowNotification(true);
-      setTimeout(() => {
-        setShowNotification(false);
-      }, 1000); // Show the notification for 1 second
       dispatch(filteredList(response.data));
-
       setLoading(false);
       return response.data;
     } catch (error) {
@@ -139,7 +134,7 @@ const Navbar = () => {
   const handleIncreaseItem = async (id) => {
     try {
       const response = await axios.patch(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/increase`,
+        `        https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/increase`,
         { productId: id }
       );
       console.log(response.data);
@@ -152,7 +147,7 @@ const Navbar = () => {
   const handleDecreaseItem = async (id) => {
     try {
       const response = await axios.patch(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/decrease`,
+        `        https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/decrease`,
         { productId: id }
       );
       setItems(response.data.products);
@@ -164,7 +159,7 @@ const Navbar = () => {
   const handleRemoveItem = async (id) => {
     try {
       const response = await axios.patch(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/remove`,
+        ` https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/remove`,
         { productId: id }
       );
       setItems(response.data.products);
@@ -209,7 +204,8 @@ const Navbar = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://ecommerce-backend-wine-one.vercel.app/api/v1/products`
+          `          https://ecommerce-backend-wine-one.vercel.app/api/v1/products
+`
         );
         dispatch(filteredList(response.data));
         setLoading(false);
@@ -319,5 +315,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;
