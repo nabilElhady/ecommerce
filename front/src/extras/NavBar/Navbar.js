@@ -120,6 +120,7 @@ const Navbar = () => {
     try {
       setLoading(true);
       setShowNotification(true);
+      alert("loading");
       const response = await axios.get(
         `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}`
       );
