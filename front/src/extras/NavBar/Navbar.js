@@ -114,10 +114,10 @@ const Navbar = () => {
   };
 
   const handleCategory = async (categoryId) => {
+    setLoading(true);
     try {
-      setLoading(true);
       const response = await axios.get(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/5`
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}`
       );
       dispatch(filteredList(response.data));
       setLoading(false);
