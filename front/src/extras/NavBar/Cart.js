@@ -29,6 +29,8 @@ const Cart = ({
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
+      // Fetch cart items when the cart is opened
+      fetchCartItems();
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
@@ -53,23 +55,13 @@ const Cart = ({
     }
   };
 
-  // Effect to fetch cart items on component mount
-  useEffect(() => {
-    fetchCartItems();
-  }, []);
-
-  // Function to update cart items in state
-  const handleUpdateItems = (newItems) => {
-    setItems(newItems);
-  };
-
   return (
     isOpen && ( // Render the cart only if it's open
       <div
         ref={cartRef} // Attach ref to the cart div
-        className="fixed right-0 top-0 mt-16 w-[28rem] bg-gray-900 shadow-lg rounded-lg py-2 z-50 max-h-[80vh] overflow-y-auto"
+        className="fixed right-0 top-0 mt-16 w-[28rem] bg-white bg-opacity-90 shadow-lg rounded-lg py-2 z-50 max-h-[80vh] overflow-y-auto"
       >
-        <h2 className="text-xl font-semibold mb-2 px-4 text-white border-b pb-2">
+        <h2 className="text-xl font-semibold mb-2 px-4 text-gray-900 border-b pb-2">
           Cart
         </h2>
         {loading ? ( // Show loading spinner if loading state is true
@@ -95,7 +87,7 @@ const Cart = ({
                 />
               ))
             ) : (
-              <p className="text-center text-white">Your cart is empty.</p>
+              <p className="text-center text-gray-900">Your cart is empty.</p>
             )}
           </div>
         )}
