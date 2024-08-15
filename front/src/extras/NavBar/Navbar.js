@@ -13,6 +13,7 @@ import SearchBar from "./SearchBar";
 import Cart from "./Cart";
 import MobileMenu from "./MobileMenu";
 import logo from "../images/logo-no-background.png";
+
 const Navbar = () => {
   const navigate = useNavigate();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
@@ -29,35 +30,13 @@ const Navbar = () => {
   const timeoutRef = useRef(null);
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const searchRef = useRef(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchCartItems = async () => {
-      if (cookies.user) {
-        try {
-          const response = await axios.get(
-            `            https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
-          );
-          const productsIds = response.data.products;
-          setItems(productsIds);
-          setLoading(false);
-        } catch (err) {
-          console.log(err);
-          setLoading(false);
-        }
-      } else {
-        setLoading(false);
-      }
-    };
-    fetchCartItems();
-  }, [cartCount, cookies.user]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `          https://ecommerce-backend-wine-one.vercel.app/api/v1/categories
-`
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/categories`
         );
         setCategories(response.data || []);
       } catch (error) {
@@ -110,16 +89,35 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const toggleCart = () => {
+  const fetchCartItems = async () => {
+    if (cookies.user) {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
+        );
+        const productsIds = response.data.products;
+        setItems(productsIds);
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+        setLoading(false);
+      }
+    }
+  };
+
+  const toggleCart = async () => {
     setIsCartOpen(!isCartOpen);
+    if (!isCartOpen) {
+      await fetchCartItems();
+    }
   };
 
   const handleCategory = async (categoryId) => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `        https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}
-`
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}`
       );
       dispatch(filteredList(response.data));
       setLoading(false);
@@ -134,7 +132,7 @@ const Navbar = () => {
   const handleIncreaseItem = async (id) => {
     try {
       const response = await axios.patch(
-        `        https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/increase`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/increase`,
         { productId: id }
       );
       console.log(response.data);
@@ -147,7 +145,7 @@ const Navbar = () => {
   const handleDecreaseItem = async (id) => {
     try {
       const response = await axios.patch(
-        `        https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/decrease`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/decrease`,
         { productId: id }
       );
       setItems(response.data.products);
@@ -159,7 +157,7 @@ const Navbar = () => {
   const handleRemoveItem = async (id) => {
     try {
       const response = await axios.patch(
-        ` https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/remove`,
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/remove`,
         { productId: id }
       );
       setItems(response.data.products);
@@ -204,8 +202,7 @@ const Navbar = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `          https://ecommerce-backend-wine-one.vercel.app/api/v1/products
-`
+          `https://ecommerce-backend-wine-one.vercel.app/api/v1/products`
         );
         dispatch(filteredList(response.data));
         setLoading(false);
@@ -251,12 +248,7 @@ const Navbar = () => {
           searchResults={searchResults}
           handleResultClick={handleResultClick}
         />
-        {showNotification && (
-          <div className="fixed top-0 left-1/2 transform -translate-x-1/2 mt-4 z-50 bg-green-500 text-white py-2 px-4 rounded-lg flex items-center shadow-lg transition-opacity duration-300">
-            <CheckCircleIcon className="w-6 h-6 mr-2" />
-            <span>done!</span>
-          </div>
-        )}
+
         <div className="flex items-center">
           <button
             className="text-white focus:outline-none relative"
@@ -315,3 +307,5 @@ const Navbar = () => {
     </nav>
   );
 };
+
+export default Navbar;
