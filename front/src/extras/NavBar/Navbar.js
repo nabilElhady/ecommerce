@@ -117,16 +117,22 @@ const Navbar = () => {
   };
 
   const handleCategory = async (categoryId) => {
+    console.log("handleCategory called with categoryId:", categoryId);
     try {
       setLoading(true);
       const response = await axios.get(
         `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}`
       );
-      alert("hi");
+      console.log("API response:", response);
+
+      alert("hi"); // This should trigger an alert dialog
+
       setShowNotification(true);
       setTimeout(() => {
         setShowNotification(false);
-      }, 1000); // Show the notification for 1 second      dispatch(filteredList(response.data));
+      }, 1000); // Show the notification for 1 second
+
+      dispatch(filteredList(response.data));
       setLoading(false);
       return response.data;
     } catch (error) {
@@ -255,12 +261,12 @@ const Navbar = () => {
           handleResultClick={handleResultClick}
         />
 
-        {showNotification &&
-          // <div className="fixed top-0 left-1/2 transform -translate-x-1/2 mt-4 z-50 bg-green-500 text-white py-2 px-4 rounded-lg flex items-center shadow-lg transition-opacity duration-300">
-          //   <CheckCircleIcon className="w-6 h-6 mr-2" />
-          //   <span>done!</span>
-          // </div>
-          alert("done")}
+        {showNotification && (
+          <div className="fixed top-0 left-1/2 transform -translate-x-1/2 mt-4 z-50 bg-green-500 text-white py-2 px-4 rounded-lg flex items-center shadow-lg transition-opacity duration-300">
+            <CheckCircleIcon className="w-6 h-6 mr-2" />
+            <span>done!</span>
+          </div>
+        )}
 
         <div className="flex items-center">
           <button
