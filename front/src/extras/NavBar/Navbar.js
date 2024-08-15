@@ -119,14 +119,16 @@ const Navbar = () => {
   const handleCategory = async (categoryId) => {
     try {
       setLoading(true);
-      setShowNotification(true);
-      alert("loading");
       const response = await axios.get(
         `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}`
       );
-      dispatch(filteredList(response.data));
-      setShowNotification(false);
+      alert("hi");
+      setShowNotification(true);
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 1000); // Show the notification for 1 second      dispatch(filteredList(response.data));
       setLoading(false);
+      return response.data;
     } catch (error) {
       console.error("Error fetching products by category:", error);
       setLoading(false);
