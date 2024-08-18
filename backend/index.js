@@ -78,7 +78,7 @@ mongoose
 
 // Middleware
 const corsOptions = {
-  origin: "https://ecommerce-frontend-pi-fawn.vercel.app", // Replace with your frontend URL
+  origin: "https://ecommerce-full-stack-final.vercel.app", // Replace with your frontend URL
   optionsSuccessStatus: 200,
 };
 
