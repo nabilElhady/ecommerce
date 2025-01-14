@@ -1,314 +1,121 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { useCookies } from "react-cookie";
-import { logout } from "../../store/authSlice";
-import { filteredList } from "../../store/listSlice";
 import LoadingSpinner from "../LoadingSpinner";
-import CategoriesMenu from "./CategoriesMenu";
-import SearchBar from "./SearchBar";
-import Cart from "./Cart";
-import MobileMenu from "./MobileMenu";
-import logo from "../images/logo-no-background.png";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-const Navbar = () => {
-  const navigate = useNavigate();
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const cartItems = useSelector((state) => state.cart.items);
-  const [items, setItems] = useState([]);
-  const cartCount = cartItems.length;
-  const dispatch = useDispatch();
-  const timeoutRef = useRef(null);
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-  const searchRef = useRef(null);
-  const [loading, setLoading] = useState(false);
+import CartItem from "../CartItem";
+import { useCookies } from "react-cookie";
 
+// Cart component definition
+const Cart = ({
+  isOpen, // Prop to control the visibility of the cart
+  toggleCart, // Prop to handle the toggle action for the cart
+  handleIncreaseItem, // Prop to handle increasing the quantity of an item
+  handleDecreaseItem, // Prop to handle decreasing the quantity of an item
+  handleRemoveItem, // Prop to handle removing an item from the cart
+}) => {
+  const cartRef = useRef(null); // Ref to the cart element for detecting outside clicks
+  const [items, setItems] = useState([]); // State to store cart items
+  const [loading, setLoading] = useState(false); // State to manage loading spinner
+  const [cookies] = useCookies(["user"]); // Hook to manage cookies
+
+  // Handle click outside the cart to close it
+  const handleClickOutside = (event) => {
+    if (cartRef.current && !cartRef.current.contains(event.target)) {
+      toggleCart();
+    }
+  };
+
+  // Effect to add and remove event listener for outside clicks when the cart is open
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://ecommerce-backend-wine-one.vercel.app/api/v1/categories`
-        );
-        setCategories(response.data || []);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
-    fetchData();
-  }, [cookies.user]);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        searchRef.current &&
-        !searchRef.current.contains(event.target) &&
-        !event.target.closest(".search-results")
-      ) {
-        setSearchResults([]);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      // Fetch cart items when the cart is opened
+      fetchCartItems();
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isOpen]);
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    setIsCategoriesOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsCategoriesOpen(false);
-    }, 500);
-  };
-
-  const handleSearchFocus = () => {
-    setIsSearchFocused(true);
-  };
-
-  const handleSearchBlur = () => {
-    setIsSearchFocused(false);
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
+  // Function to fetch cart items from the server
   const fetchCartItems = async () => {
-    if (cookies.user) {
-      setLoading(true);
-      try {
-        const response = await axios.get(
-          `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}`
-        );
-        const productsIds = response.data.products;
-        setItems(productsIds);
-        setLoading(false);
-      } catch (err) {
-        console.log(err);
-        setLoading(false);
-      }
-    }
-  };
-
-  const toggleCart = async () => {
-    setIsCartOpen(!isCartOpen);
-    if (!isCartOpen) {
-      await fetchCartItems();
-    }
-  };
-
-  const handleCategory = async (categoryId) => {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/category/${categoryId}`
-      );
-      dispatch(filteredList(response.data));
-      setLoading(false);
-      toast.success("category loaded successfully");
-
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching products by category:", error);
-      setLoading(false);
-      throw error;
-    }
-  };
-
-  const handleIncreaseItem = async (id) => {
-    try {
-      const response = await axios.patch(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/increase`,
-        { productId: id }
-      );
-      console.log(response.data);
-      setItems(response.data.products);
-    } catch (error) {
-      console.error("Error increasing item quantity:", error);
-    }
-  };
-
-  const handleDecreaseItem = async (id) => {
-    try {
-      const response = await axios.patch(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/decrease`,
-        { productId: id }
-      );
-      setItems(response.data.products);
-    } catch (error) {
-      console.error("Error decreasing item quantity:", error);
-    }
-  };
-
-  const handleRemoveItem = async (id) => {
-    try {
-      const response = await axios.patch(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/carts/${cookies.user._id}/remove`,
-        { productId: id }
-      );
-      setItems(response.data.products);
-    } catch (error) {
-      console.error("Error removing item from cart:", error);
-    }
-  };
-
-  const handleLogout = () => {
-    removeCookie("user", { path: "/" });
-    removeCookie("token", { path: "/" });
-    dispatch(logout());
-    window.location.href = "/";
-  };
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handleSearchSubmit = async (e) => {
-    e.preventDefault();
-    if (searchQuery.trim() === "") return;
-
+    if (!cookies.user) return; // If no user is logged in, do nothing
+    setLoading(true); // Start loading spinner
     try {
       const response = await axios.get(
-        `https://ecommerce-backend-wine-one.vercel.app/api/v1/products/search?query=${searchQuery}`
+        `https://ecommerce-backend-wine-one.vercel.app/api/v1/categories`
       );
-      setSearchResults(response.data || []);
+      setItems(response.data.products); // Set fetched items to state
     } catch (error) {
-      console.error("Error searching for products:", error);
+      console.error("Error fetching cart items:", error);
+    } finally {
+      setLoading(false); // Stop loading spinner
     }
   };
-
-  const handleResultClick = (id) => {
-    navigate(`/item/${id}`);
-    setSearchResults([]);
-    setSearchQuery("");
-  };
-
-  useEffect(() => {
-    const fetchAllProducts = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(
-          `https://ecommerce-backend-wine-one.vercel.app/api/v1/products`
-        );
-        dispatch(filteredList(response.data));
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        setLoading(false);
-      }
-    };
-    fetchAllProducts();
-  }, []);
 
   return (
-    <nav className="bg-gradient-to-r from-gray-900 via-gray-900 to-gray-200 py-4 relative z-30">
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="flex items-center">
-          <button
-            className="text-white lg:hidden focus:outline-none"
-            onClick={toggleMobileMenu}
-          >
-            <FontAwesomeIcon
-              icon={faBars}
-              className="hover:text-gray-400 transition-colors duration-200"
-            />
-          </button>
-          <img className="w-12 h-12" src={logo}></img>
-        </div>
+    <div
+      ref={cartRef} // Attach ref to the cart div
+      className={`fixed right-0 top-0 h-full bg-white bg-opacity-90 shadow-lg z-50 transform transition-transform ${
+        isOpen ? "translate-x-0" : "translate-x-full"
+      }`}
+      style={{ width: "30rem" }}
+    >
+      <div className="w-1/4 bg-blue-500 "></div>
+      {/* Blue Left Section */}
 
-        <CategoriesMenu
-          isOpen={isCategoriesOpen}
-          handleMouseEnter={handleMouseEnter}
-          handleMouseLeave={handleMouseLeave}
-          categories={categories}
-          handleCategory={handleCategory}
-        />
-
-        <SearchBar
-          searchRef={searchRef}
-          searchQuery={searchQuery}
-          handleSearchChange={handleSearchChange}
-          handleSearchFocus={handleSearchFocus}
-          handleSearchBlur={handleSearchBlur}
-          handleSearchSubmit={handleSearchSubmit}
-          searchResults={searchResults}
-          handleResultClick={handleResultClick}
-        />
-
-        <div className="flex items-center">
-          <button
-            className="text-white focus:outline-none relative"
-            onClick={toggleCart}
-          >
-            <FontAwesomeIcon
-              icon={faShoppingCart}
-              className="hover:text-gray-400 transition-colors duration-200"
-            />
-            {cartCount > 0 ? (
-              <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">
-                {cartCount}
-              </span>
-            ) : (
-              <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">
-                {items.length}
-              </span>
-            )}
-          </button>
-          <Cart
-            isOpen={isCartOpen}
-            toggleCart={toggleCart}
-            items={items}
-            setItems={setItems}
-            loading={loading}
-            handleIncreaseItem={handleIncreaseItem}
-            handleDecreaseItem={handleDecreaseItem}
-            handleRemoveItem={handleRemoveItem}
-          />
-        </div>
-
-        {cookies.user ? (
-          <button
-            onClick={handleLogout}
-            className="text-white focus:outline-none ml-4 hover:text-gray-400 transition-colors duration-200"
-          >
-            Logout
-          </button>
+      <div className="w-full h-full p-4 flex flex-col">
+        <h2 className="text-xl font-semibold mb-2 px-4 text-gray-900 border-b pb-2 text-center">
+          Cart
+        </h2>
+        {loading ? ( // Show loading spinner if loading state is true
+          <div className="flex justify-center items-center h-full">
+            <LoadingSpinner />
+          </div>
         ) : (
-          <Link to={"/signup"}>
-            <button className=" font-bold text-white  outline-text focus:outline-none ml-4 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200  py-1 px-3 rounded">
-              Sign Up
-            </button>
-          </Link>
+          <div className="flex-1 overflow-y-auto space-y-4">
+            {items.length > 0 ? ( // Check if there are items in the cart
+              items.map((item) => (
+                <CartItem
+                  key={item.product._id}
+                  item={item}
+                  handleIncreaseItem={(id) =>
+                    handleIncreaseItem(id).then(() => fetchCartItems())
+                  }
+                  handleDecreaseItem={(id) =>
+                    handleDecreaseItem(id).then(() => fetchCartItems())
+                  }
+                  handleRemoveItem={(id) =>
+                    handleRemoveItem(id).then(() => fetchCartItems())
+                  }
+                />
+              ))
+            ) : (
+              <p className="text-center text-gray-900">Your cart is empty.</p>
+            )}
+          </div>
         )}
+        <div className="px-4 border-t pt-2">
+          <Link
+            to="/cart"
+            className="block bg-blue-500 text-white text-center py-2 rounded-lg hover:bg-blue-600"
+          >
+            View Cart
+          </Link>
+        </div>
       </div>
 
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        toggleMobileMenu={toggleMobileMenu}
-        categories={categories}
-        handleCategory={handleCategory}
-        handleLogout={handleLogout}
-        user={cookies.user}
-      />
-    </nav>
+      {/* Close Cart Button */}
+      <button
+        onClick={toggleCart}
+        className="absolute top-4 right-4 text-white text-xl"
+      >
+        X
+      </button>
+    </div>
   );
 };
 
-export default Navbar;
+export default Cart;
