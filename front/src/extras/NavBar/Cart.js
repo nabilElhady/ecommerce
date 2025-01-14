@@ -56,12 +56,18 @@ const Cart = ({
   };
 
   return (
-    isOpen && ( // Render the cart only if it's open
-      <div
-        ref={cartRef} // Attach ref to the cart div
-        className="fixed right-0 top-0 mt-16 w-[28rem] bg-white bg-opacity-90 shadow-lg rounded-lg py-2 z-50 max-h-[80vh] overflow-y-auto"
-      >
-        <h2 className="text-xl font-semibold mb-2 px-4 text-gray-900 border-b pb-2">
+    <div
+      ref={cartRef} // Attach ref to the cart div
+      className={`fixed right-0 top-0 h-full bg-white bg-opacity-90 shadow-lg z-50 transform transition-transform ${
+        isOpen ? "translate-x-0" : "translate-x-full"
+      }`}
+      style={{ width: "30rem" }}
+    >
+      <div className="w-1/4 bg-blue-500 "></div>
+      {/* Blue Left Section */}
+
+      <div className="w-full h-full p-4 flex flex-col">
+        <h2 className="text-xl font-semibold mb-2 px-4 text-gray-900 border-b pb-2 text-center">
           Cart
         </h2>
         {loading ? ( // Show loading spinner if loading state is true
@@ -69,7 +75,7 @@ const Cart = ({
             <LoadingSpinner />
           </div>
         ) : (
-          <div className="p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto space-y-4">
             {items.length > 0 ? ( // Check if there are items in the cart
               items.map((item) => (
                 <CartItem
@@ -100,7 +106,15 @@ const Cart = ({
           </Link>
         </div>
       </div>
-    )
+
+      {/* Close Cart Button */}
+      <button
+        onClick={toggleCart}
+        className="absolute top-4 right-4 text-white text-xl"
+      >
+        X
+      </button>
+    </div>
   );
 };
 
