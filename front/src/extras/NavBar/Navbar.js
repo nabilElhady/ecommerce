@@ -216,6 +216,7 @@ const Navbar = () => {
     };
     fetchAllProducts();
   }, []);
+  const isAdmin = cookies.user && cookies.user.isAdmin === true; // Assuming role is stored in cookies
 
   return (
     <nav className="bg-gradient-to-r from-gray-900 via-gray-900 to-gray-200 py-4 relative z-30">
@@ -240,7 +241,13 @@ const Navbar = () => {
           categories={categories}
           handleCategory={handleCategory}
         />
-
+        {isAdmin && (
+          <Link to={"/dashboard"}>
+            <button className="font-bold text-white outline-text focus:outline-none ml-4 hover:text-yellow-400 hover:bg-gray-600 transition-colors duration-200 py-1 px-3 rounded">
+              Dashboard
+            </button>
+          </Link>
+        )}
         <SearchBar
           searchRef={searchRef}
           searchQuery={searchQuery}
