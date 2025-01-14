@@ -74,7 +74,7 @@ const Navbar = () => {
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setIsCategoriesOpen(false);
-    }, 2000);
+    }, 500);
   };
 
   const handleSearchFocus = () => {
