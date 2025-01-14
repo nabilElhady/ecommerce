@@ -13,7 +13,8 @@ import SearchBar from "./SearchBar";
 import Cart from "./Cart";
 import MobileMenu from "./MobileMenu";
 import logo from "../images/logo-no-background.png";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Navbar = () => {
   const navigate = useNavigate();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
@@ -121,6 +122,8 @@ const Navbar = () => {
       );
       dispatch(filteredList(response.data));
       setLoading(false);
+      toast.success("category loaded successfully");
+
       return response.data;
     } catch (error) {
       console.error("Error fetching products by category:", error);
