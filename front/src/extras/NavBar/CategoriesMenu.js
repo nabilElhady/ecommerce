@@ -23,7 +23,10 @@ const CategoriesMenu = ({
             {categories.map((category) => (
               <Link
                 key={category._id}
-                onClick={() => handleCategory(category._id)}
+                onClick={() => {
+                  handleCategory(category._id);
+                  handleMouseLeave();
+                }}
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
               >
                 {category.name}
